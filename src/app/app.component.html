@@ -1,0 +1,38 @@
+<!--View mode-->
+<app-user-editor></app-user-editor>
+<section *ngIf="!isEditMode">
+  <h1>{{title}}</h1>
+  <h1>Detail</h1>
+  <div>
+    <b>Name:</b>{{user.name}}
+    <b>Age:</b>{{user.age}}
+    <b>Height:</b>{{user.weight}}
+    <b>Weight:</b>{{user.height}}
+    <b>BMI:</b>{{user.getBMI()}}
+
+  </div>
+  <span *ngIf="user.isHealty()"></span>
+  <!--add edit button heere on bottom-->
+  <button (click)="isEditMode=true">EDIT</button>
+</section>
+
+<section *ngIf="isEditMode">
+  <h2>Editor</h2>
+  <div>
+      <button (click)="isEditMode=false">Back</button>
+
+      <!--This is for debugging the data -->
+      <!--Code will be on the https://github.com/modernduck/hello-editor/commit/c61ec03d667858502be1b5e85a980c5f04405d47-->
+      <pre>{{user | json}}</pre>
+      <!--<input type="test" value="{{user.name}}"/><br/>-->
+      <!--<input type="number" value="{{user.age}}"/><br/>-->
+      <input type="text" [(ngModel)]="user.name" /><br/>
+      <input type="number" [(ngModel)]="user.age"/><br/>
+      <input type="number" [(ngModel)]="user.weight"/><br/>
+      <input type="number" [(ngModel)]="user.height"/><br/>
+
+      <button (click)="onCheckAge()">Check Age</button>
+      <button (click)="onCheckBMI()">Check BMI</button>
+  </div>
+  
+</section>
