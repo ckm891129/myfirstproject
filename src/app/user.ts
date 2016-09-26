@@ -1,8 +1,19 @@
 export class User {
     name:string;
     age:number;
+    password: string;
     weight:number;
     height:number;
+
+    // to create list of array
+    constructor(name:string, age:number, password:string, weight:number,
+    height:number){
+        this.name = name;
+        this.age = age;
+        this.password = password;
+        this.weight = weight;
+        this.height =height;
+    }
 
     isOld():boolean {
     if (this.age >= 100)

@@ -1,17 +1,28 @@
 <!--View mode-->
-<app-user-editor></app-user-editor>
-<section *ngIf="!isEditMode">
+<!--<app-user-editor></app-user-editor>-->
+<section *ngIf="!isEditMode" class="user-selector">
   <h1>{{title}}</h1>
-  <h1>Detail</h1>
+
+  <ul>
+    <!--ngFor like For loop in html-->
+    <!--users is come from the app.component.ts in the this.users-->
+    <!--let is javascript for loop the value -->
+    <li *ngFor="let item of users">
+      {{item.name}} <span class="age">{{item.age}}</span>
+    </li>
+  </ul>
+  <h1>Details of the user</h1>
   <div>
-    <b>Name:</b>{{user.name}}
-    <b>Age:</b>{{user.age}}
-    <b>Height:</b>{{user.weight}}
-    <b>Weight:</b>{{user.height}}
-    <b>BMI:</b>{{user.getBMI()}}
+    <!--change user. to selectedUser.name-->
+    <b>Name:</b>{{selectedUser.name}}<br/>
+    <b>Age:</b>{{selectedUser.age}}<br/>
+    <b>Height:</b>{{selectedUser.weight}}<br/>
+    <b>Weight:</b>{{selectedUser.height}}<br/>
+    <b>Password:</b>{{selectedUser.password}}<br/>
+    <b>BMI:</b>{{selectedUser.getBMI()}}<br/>
 
   </div>
-  <span *ngIf="user.isHealty()"></span>
+  <span *ngIf="selectedUser.isHealty()"></span>
   <!--add edit button heere on bottom-->
   <button (click)="isEditMode=true">EDIT</button>
 </section>
@@ -26,10 +37,10 @@
       <pre>{{user | json}}</pre>
       <!--<input type="test" value="{{user.name}}"/><br/>-->
       <!--<input type="number" value="{{user.age}}"/><br/>-->
-      <input type="text" [(ngModel)]="user.name" /><br/>
-      <input type="number" [(ngModel)]="user.age"/><br/>
-      <input type="number" [(ngModel)]="user.weight"/><br/>
-      <input type="number" [(ngModel)]="user.height"/><br/>
+      <input type="text" [(ngModel)]="selectedUser.name" /><br/>
+      <input type="number" [(ngModel)]="selectedUser.age"/><br/>
+      <input type="number" [(ngModel)]="selectedUser.weight"/><br/>
+      <input type="number" [(ngModel)]="selectedUser.height"/><br/>
 
       <button (click)="onCheckAge()">Check Age</button>
       <button (click)="onCheckBMI()">Check BMI</button>
